@@ -7,7 +7,7 @@ function FindDonors() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:5000/donors")
+    fetch("https://blood-donor-sos-api.onrender.com/donors")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch donors");

@@ -5,7 +5,7 @@ function DonorDashboard() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:5000/donors")
+    fetch("https://blood-donor-sos-api.onrender.com/donors")
       .then((response) => response.json())
       .then((data) => {
         setDonors(data);
@@ -22,7 +22,7 @@ function DonorDashboard() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/donors/${donor._id}`,
+        `https://blood-donor-sos-api.onrender.com/donors/${donor._id}`,
         {
           method: "PUT",
           headers: {

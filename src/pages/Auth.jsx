@@ -28,7 +28,7 @@ function Auth() {
     try {
       // Step 1: Create user account
       const userResponse = await fetch(
-        "http://localhost:5000/register",
+        "https://blood-donor-sos-api.onrender.com/register",
         {
           method: "POST",
           headers: {
@@ -53,7 +53,7 @@ function Auth() {
       // Step 2: If donor, create donor profile
       if (role === "donor") {
         const donorResponse = await fetch(
-          "http://localhost:5000/donors",
+          "https://blood-donor-sos-api.onrender.com/donors",
           {
             method: "POST",
             headers: {
@@ -114,7 +114,7 @@ function Auth() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/login",
+        "https://blood-donor-sos-api.onrender.com/login",
         {
           method: "POST",
           headers: {
