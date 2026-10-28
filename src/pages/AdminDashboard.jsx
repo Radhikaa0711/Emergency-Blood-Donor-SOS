@@ -9,7 +9,7 @@ function AdminDashboard() {
     const fetchAdminData = async () => {
       try {
         const donorsResponse = await fetch(
-          "http://localhost:5000/admin/donors"
+          "https://blood-donor-sos-api.onrender.com/admin/donors"
         );
 
         const sosResponse = await fetch(
