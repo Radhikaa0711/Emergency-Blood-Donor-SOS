@@ -13,7 +13,7 @@ function AdminDashboard() {
         );
 
         const sosResponse = await fetch(
-          "http://localhost:5000/admin/sos"
+          "https://blood-donor-sos-api.onrender.com/admin/sos"
         );
 
         const donorsData = await donorsResponse.json();
