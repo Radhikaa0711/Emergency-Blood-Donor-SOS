@@ -6,17 +6,49 @@ function SOSRequest() {
   const [urgency, setUrgency] = useState("");
   const [message, setMessage] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    alert("SOS request created successfully!");
+    try {
+      const response = await fetch("http://localhost:5000/sos", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          bloodGroup,
+          location,
+          urgency,
+          message,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(
+          data.message || "Failed to create SOS request"
+        );
+      }
+
+      alert("🚨 SOS request sent successfully!");
+
+      setBloodGroup("");
+      setLocation("");
+      setUrgency("");
+      setMessage("");
+    } catch (error) {
+      console.error("Error submitting SOS request:", error);
+
+      alert(
+        "Failed to send SOS request. Please check whether the backend is running."
+      );
+    }
   };
 
   return (
     <div className="sos-page">
-
       <div className="sos-card">
-
         <div className="sos-header">
           <div className="sos-icon">🚨</div>
 
@@ -28,7 +60,6 @@ function SOSRequest() {
         </div>
 
         <form onSubmit={handleSubmit}>
-
           <label>Required Blood Group</label>
 
           <select
@@ -66,7 +97,9 @@ function SOSRequest() {
           >
             <option value="">Select Urgency</option>
             <option value="Immediate">Immediate</option>
-            <option value="Within a few hours">Within a few hours</option>
+            <option value="Within a few hours">
+              Within a few hours
+            </option>
             <option value="Today">Today</option>
           </select>
 
@@ -82,13 +115,11 @@ function SOSRequest() {
           <button type="submit" className="sos-submit">
             🚨 Send SOS Request
           </button>
-
         </form>
-
       </div>
-
     </div>
   );
 }
 
 export default SOSRequest;
+
